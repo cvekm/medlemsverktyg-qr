@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Redirect</title>
+</head>
+<body>
+<script>
+  const IOS_URL = "https://apps.apple.com/se/app/medlemsverktyg/id391093033";
+  const ANDROID_URL = "https://play.google.com/store/apps/details?id=org.lds.ldstools";
+
+  const ua = navigator.userAgent || "";
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  if (isIOS) location.replace(IOS_URL);
+  else if (isAndroid) location.replace(ANDROID_URL);
+  else location.replace(IOS_URL); // fallback om okänd enhet
+</script>
+</body>
+</html>
