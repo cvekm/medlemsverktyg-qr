@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ladda ner appen</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
+    .card { max-width: 520px; margin: 0 auto; border: 1px solid #ddd; border-radius: 16px; padding: 20px; }
+    h1 { font-size: 20px; margin: 0 0 12px; }
+    p { margin: 0 0 16px; line-height: 1.4; }
+    a.btn {
+      display: block; text-align: center; text-decoration: none;
+      border: 1px solid #111; border-radius: 12px; padding: 12px 14px; margin: 10px 0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Öppnar appbutiken…</h1>
+    <p>Om du inte skickas vidare automatiskt, välj din enhet:</p>
+
+    <a class="btn" id="iosLink" href="https://apps.apple.com/app/idDIN_APP_ID">iPhone (App Store)</a>
+    <a class="btn" id="androidLink" href="https://play.google.com/store/apps/details?id=DITT.PAKETNAMN">Android (Google Play)</a>
+
+    <p style="font-size: 12px; color: #666; margin-top: 14px;">
+      Tips: Om du har problem, uppdatera sidan och prova igen.
+    </p>
+  </div>
+
+  <script>
+    // Byt dessa två till dina riktiga länkar:
+    const IOS_URL = "https://apps.apple.com/se/app/medlemsverktyg/id391093033";
+    const ANDROID_URL = "https://play.google.com/store/apps/details?id=org.lds.liv";
+
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    }
+
+    function isAndroid() {
+      return /Android/.test(ua);
+    }
+
+    // Uppdatera fallback-knapparnas href också
+    document.getElementById("iosLink").href = IOS_URL;
+    document.getElementById("androidLink").href = ANDROID_URL;
+
+    // Autoredirect
+    if (isIOS()) {
+      window.location.replace(IOS_URL);
+    } else if (isAndroid()) {
+      window.location.replace(ANDROID_URL);
+    }
+  </script>
+</body>
+</html>
